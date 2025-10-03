@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import json
+import os
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'dev_secret'
@@ -98,6 +100,6 @@ def exit_app():
     return redirect(url_for('index'))
 
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Railway sets PORT automatically
+    app.run(host="0.0.0.0", port=port)
